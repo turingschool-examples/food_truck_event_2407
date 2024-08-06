@@ -63,4 +63,28 @@ RSpec.describe Food_Truck do
         expect(food_truck.check_stock(item2)).to eq(12)
     end
 
+    it 'calculates potential_revenue' do
+        item1 = Item.new(name: 'Peach Pie (Slice)', price: "$3.75")
+        item2 = Item.new(name: 'Apple Pie (Slice)', price: '$2.50')
+        item3 = Item.new(name: 'Pecan Pie (Slice)', price: '$3.25')
+
+        food_truck1 = Food_Truck.new("Rocky Mountain Pies")
+        food_truck2 = Food_Truck.new("Ba-Nom-a-Nom")
+        food_truck3 = Food_Truck.new("Palisade Peach Shack")
+
+        food_truck1.stock(item1, 15) 
+        food_truck1.stock(item2, 25)
+
+        food_truck2.stock(item1, 13) 
+        food_truck2.stock(item2, 22) 
+        food_truck2.stock(item3, 30) 
+
+        food_truck3.stock(item1, 14) 52.5
+        food_truck3.stock(item2, 13) 32.5
+        food_truck3.stock(item3, 25) 81.25
+
+        expect(food_truck1.potential_revenue).to eq(118.75) 
+        expect(food_truck2.potential_revenue).to eq(201.25)
+        expect(food_truck3.potential_revenue).to eq(166.25)
+    end
 end
