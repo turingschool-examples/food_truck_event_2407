@@ -20,4 +20,14 @@ class Event
     def food_trucks_that_sell(item)
         @food_trucks.find_all { |food_truck| food_truck.inventory.include?(item)}
     end
+
+    def sorted_item_list
+        sorted_list = []
+        @food_trucks.each do |food_truck| 
+            food_truck.inventory.each do |item, name|
+            sorted_list << item.name
+            end
+        end
+        sorted_list.uniq.sort
+    end
 end
