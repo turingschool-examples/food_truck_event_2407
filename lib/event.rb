@@ -24,8 +24,6 @@ class Event
       sorted_items = all_items.flatten.uniq.sort
     end
 
-    
-
     def total_inventory
         total_inventory = Hash.new { |hash, key| hash[key] = { quantity: 0, food_trucks: [] } }
 
@@ -39,4 +37,6 @@ class Event
         
         total_inventory
     end
+
+
 end

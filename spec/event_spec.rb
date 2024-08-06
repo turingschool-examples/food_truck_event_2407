@@ -91,22 +91,32 @@ RSpec.describe Event do
 
             expect(@event.total_inventory).to eq ({
                 @item1 => {
-                  quantity: @food_truck1.inventory[@item1] + @food_truck3.inventory[@item1], # 35 + 65 = 100
+                  quantity: 100, # 35 + 65 = 100
                   food_trucks: [@food_truck1, @food_truck3]
                 },
                 @item2 => {
-                  quantity: @food_truck1.inventory[@item2], # 7
+                  quantity: 7,
                   food_trucks: [@food_truck1]
                 },
                 @item3 => {
-                  quantity: @food_truck2.inventory[@item3], # 25
+                  quantity: 25, 
                   food_trucks: [@food_truck2]
                 },
                 @item4 => {
-                  quantity: @food_truck2.inventory[@item4], # 50
+                  quantity: 50, 
                   food_trucks: [@food_truck2]
                 }
               })
+        end
+    end
+
+    describe "overstocked_items" do
+        it "returns an array of all overstocked items" do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            expect(@event.overstocked_items).to eq([@item1])
         end
     end
 end
