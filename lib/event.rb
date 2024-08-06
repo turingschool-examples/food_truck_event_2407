@@ -44,4 +44,23 @@ class Event
         items_over_stocked = total_inventory.find_all { |item, info| info[:quantity] > 50 && info[:food_trucks].length > 1}
         items_over_stocked.map { |item, info| item}
     end
+
+    def sell(item, quantity) 
+        quantity_demanded =  quantity # 50
+        @food_trucks.each do |food_truck|
+            quantity_to_sell = food_truck.check_stock(item)
+            next unless quantity_to_sell > 0
+
+            if quantity_to_sell < quantity_demanded
+                food_truck.sell_items(item, quantity_to_sell)
+                quantity_demanded -= quantity_to_sell
+            else
+                food_truck.sell_items(item, quantity_demanded)
+                quantity_demanded = 0
+            end
+        end
+
+        return true if quantity_demanded = 0
+        return false if quantity_demanded > 0
+    end
 end

@@ -139,4 +139,17 @@ RSpec.describe Event do
             expect(@event.overstocked_items).to eq([@item1, @item2])
         end
     end
+
+    describe "sell" do
+        it "will sell food truck items" do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            @event.sell(@item1, 50)
+
+            expect(@food_truck1.check_stock(@item1)).to eq 0
+            expect(@food_truck3.check_stock(@item1)).to eq 50
+        end
+    end
 end
