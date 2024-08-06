@@ -19,7 +19,7 @@ RSpec.describe Event do
         expect(event.name).to eq("South Pearl Street Farmers Market")
     end
 
-    it 'has an event name' do
+    it 'even adds food trucks' do
         event = Event.new("South Pearl Street Farmers Market")  
         food_truck1 = Food_Truck.new("Rocky Mountain Pies")  
         item1 = Item.new({name: 'Peach Pie (Slice)', price: "$3.75"})
@@ -45,5 +45,20 @@ RSpec.describe Event do
 
         expect(event.food_trucks).to eq(expected)
     end
-    
+
+    it 'lists food truck names' do
+        event = Event.new("South Pearl Street Farmers Market") 
+
+        food_truck1 = Food_Truck.new("Rocky Mountain Pies")  
+        food_truck2 = Food_Truck.new("Ba-Nom-a-Nom")    
+        food_truck3 = Food_Truck.new("Palisade Peach Shack")  
+
+        event.add_food_truck(food_truck1)  
+        event.add_food_truck(food_truck2) 
+        event.add_food_truck(food_truck3)
+
+        expected = ["Rocky Mountain Pies", "Ba-Nom-a-Nom", "Palisade Peach Shack"]
+
+        expect(event.food_truck_names).to eq(expected)
+    end
 end
