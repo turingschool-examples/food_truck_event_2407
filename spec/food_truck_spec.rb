@@ -46,6 +46,8 @@ RSpec.describe Item do
         end
 
         it 'returns 0 if the specified item is not in stock' do
+            expect(@food_truck.inventory).to eq({})
+            expect (@food_truck.check_stock(@item1)).to eq(0)
 
         end
     end
