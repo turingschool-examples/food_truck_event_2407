@@ -7,7 +7,11 @@ class FoodTruck
     end
 
     def stock(item, quantity)
-        @inventory[item] = quantity
+        if @inventory.key?(item)
+                @inventory[item] += quantity
+        else
+            @inventory[item] = quantity
+        end
     end
 
     def check_stock(item)
@@ -16,8 +20,5 @@ class FoodTruck
         else 
             0
         end
-
     end
-
-    
 end
