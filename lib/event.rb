@@ -21,5 +21,26 @@ class Event
         end
     end
 
+    def sorted_item_list
+        unique_names = @food_trucks.flat_map do |food_truck|
+          food_truck.inventory.keys.map(&:name)
+        end
+        unique_names.uniq.sort
+    end
 
+    def overstocked_items
+        item_quantities = Hash.new(0)
+        item_food_truck_counts = Hash.new(0)
+    
+        @food_trucks.each do |food_truck|
+          food_truck.inventory.each do |item, quantity|
+            item_quantities[item] += quantity
+            item_food_truck_counts[item] += 1
+          end
+        end
+
+        item_quantities.select do |item, total_quantity|
+          item_food_truck_counts[item] > 1 && total_quantity > 50
+        end.keys
+    end
 end

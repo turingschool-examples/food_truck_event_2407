@@ -63,7 +63,7 @@ RSpec.describe Event do
         expect(event.food_truck_names).to eq(expected)
     end
 
-    it 'lists food trucks that sell a specific item' do
+    it 'lists food trucks that sell a specific items' do
         event = Event.new("South Pearl Street Farmers Market")
     
         food_truck1 = Food_Truck.new("Rocky Mountain Pies")
@@ -74,9 +74,9 @@ RSpec.describe Event do
         item4 = Item.new(name: 'Pecan Pie (Slice)', price: '$3.25')
         item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
     
-        food_truck1.stock(item1, 65)
-        food_truck2.stock(item4, 50)
-        food_truck3.stock(item1, 65)
+        food_truck1.stock(item1, 22)
+        food_truck2.stock(item4, 8)
+        food_truck3.stock(item1, 10)
     
         event.add_food_truck(food_truck1)
         event.add_food_truck(food_truck2)
@@ -87,4 +87,51 @@ RSpec.describe Event do
         expect(event.food_trucks_that_sell(item2)).to eq([])
     end
 
+    it 'returns a sorted list of unique item names' do
+        event = Event.new("South Pearl Street Farmers Market")
+
+        item1 = Item.new(name: 'Peach Pie (Slice)', price: "$3.75")
+        item2 = Item.new(name: 'Apple Pie (Slice)', price: '$2.50')
+        item3 = Item.new(name: 'Pecan Pie (Slice)', price: '$3.25')
+  
+        food_truck1 = Food_Truck.new("Rocky Mountain Pies")
+        food_truck2 = Food_Truck.new("Ba-Nom-a-Nom")
+  
+        food_truck1.stock(item1, 13)
+        food_truck1.stock(item2, 22)
+  
+        food_truck2.stock(item1, 14)
+        food_truck2.stock(item3, 15)
+  
+        event.add_food_truck(food_truck1)
+        event.add_food_truck(food_truck2)
+  
+        expect(event.sorted_item_list).to eq(["Apple Pie (Slice)", "Peach Pie (Slice)", "Pecan Pie (Slice)"])
+    end
+
+    it 'returns a list of overstocked items' do
+        item1 = Item.new(name: 'Peach Pie (Slice)', price: "$3.75")
+        item2 = Item.new(name: 'Apple Pie (Slice)', price: '$2.50')
+        item3 = Item.new(name: 'Pecan Pie (Slice)', price: '$3.25')
+  
+        food_truck1 = Food_Truck.new("Rocky Mountain Pies")
+        food_truck2 = Food_Truck.new("Ba-Nom-a-Nom")
+        food_truck3 = Food_Truck.new("Palisade Peach Shack")
+  
+        food_truck1.stock(item1, 21)
+        food_truck1.stock(item2, 2)
+  
+        food_truck2.stock(item1, 36)
+        food_truck2.stock(item3, 8)
+  
+        food_truck3.stock(item1, 5)
+        food_truck3.stock(item3, 48)
+
+        event = Event.new("South Pearl Street Farmers Market")
+        event.add_food_truck(food_truck1)
+        event.add_food_truck(food_truck2)
+        event.add_food_truck(food_truck3)
+  
+        expect(event.overstocked_items).to contain_exactly(item1, item3)
+    end
 end
