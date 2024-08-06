@@ -15,5 +15,15 @@ RSpec.describe FoodTruck do
             expect(item1).to eq({name: 'Peach Pie (Slice)', price: "$3.75"})
             expect(item2).to eq({name: 'Apple Pie (Slice)', price: '$2.50'})
         end
+
+        it 'has a name' do
+            food_truck = FoodTruck.new("Rocky Mountain Pies")
+            
+            expect(food_truck.name).to be "Rocky Mountain Pies"
+        end
+
+        it 'has an inventory' do
+            expect(food_truck.inventory).to eq({})
+        end
     end
 end

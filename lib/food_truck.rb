@@ -1,7 +1,8 @@
 class FoodTruck
-    attr_reader :items
+    attr_reader :items, :inventory
 
-    def initialize(items)
+    def initialize(items, inventory)
         @items = items
+        @inventory = {}
     end
 end
