@@ -6,16 +6,18 @@ class FoodTruck
         @inventory = {}
     end
 
-    def check_stock(item)
-        item_stock = 0
-        @inventory.each do |item|
-            item_stock += item.values
-        end
-
-        item_stock
-    end
-
     def stock(item, quantity)
         @inventory[item] = quantity
     end
+
+    def check_stock(item)
+        if @inventory.key?(item)
+            @inventory[item]
+        else 
+            0
+        end
+
+    end
+
+    
 end
