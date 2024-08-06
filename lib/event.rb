@@ -6,8 +6,8 @@ class Event
         @food_trucks = []
     end
 
-    def add_food_truck(truck_name)
-        @food_trucks << truck_name
+    def add_food_truck(truck)
+        @food_trucks << truck
     end
 
     def food_truck_names
@@ -54,4 +54,15 @@ class Event
         end
         overstocked_items
     end
+
+    def total_inventory
+        item_hash = Hash.new(0)  
+        @food_trucks.each do |truck|
+            truck.inventory.each do |item, quantity|
+                item_hash[item] += quantity
+            end
+        end
+
+        item_hash
+    end  
 end
