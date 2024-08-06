@@ -118,5 +118,17 @@ RSpec.describe Event do
 
             expect(@event.overstocked_items).to eq([@item1])
         end
+        
+        it "returns only items that are above 50 and sold my multiple food_trucks" do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+            @food_truck1.stock(@item2, 70)
+
+            expect(@event.overstocked_items).to eq([@item1])
+
+            @food_truck2.stock(@item2, 5)
+            expect(@event.overstocked_items).to eq([@item1, @item2])
+        end
     end
 end

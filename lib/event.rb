@@ -38,5 +38,8 @@ class Event
         total_inventory
     end
 
-
+    def overstocked_items
+        items_over_stocked = total_inventory.find_all { |item, info| info[:quantity] > 50 && info[:food_trucks].length > 1}
+        items_over_stocked.map { |item, info| item}
+    end
 end
