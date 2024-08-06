@@ -14,4 +14,8 @@ class Event
     def food_truck_names
         @food_trucks.map { |food_truck| food_truck.name }
     end
+
+    def food_trucks_that_sell(item)
+        @food_trucks.find_all { |food_truck| food_truck.check_stock(item) > 0}
+    end
 end
