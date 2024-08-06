@@ -25,7 +25,7 @@ RSpec.describe Event do
         end
     end
 
-    describe '#add food trucks' do
+    describe '#add_food_truck' do
         it 'can add foodtrucks' do
             @event.add_food_truck(@food_truck1)
             @event.add_food_truck(@food_truck2)
@@ -37,7 +37,7 @@ RSpec.describe Event do
         end
     end
 
-    describe '#food truck names' do
+    describe '#food_truck_names' do
         it 'returns list of food truck names' do
             @event.add_food_truck(@food_truck1)
             @event.add_food_truck(@food_truck2)
@@ -49,7 +49,7 @@ RSpec.describe Event do
         end
     end
 
-    describe '#food trucks that sell' do
+    describe '#food_trucks_that_sell' do
         it 'returns list of foodtrucks that sell item' do
             @event.add_food_truck(@food_truck1)    
             @event.add_food_truck(@food_truck2)    
@@ -75,7 +75,7 @@ RSpec.describe Event do
         end
     end
 
-    describe '#potential revenue' do
+    describe '#potential_revenue' do
         it 'returns potential revenue for foodtuck' do
             @event.add_food_truck(@food_truck1)    
             @event.add_food_truck(@food_truck2)    
@@ -93,7 +93,7 @@ RSpec.describe Event do
         end
     end
 
-    describe '#sorted item list' do
+    describe '#sorted_item_list' do
         it 'returns unique alphabetical list of all items in stock' do
             @event.add_food_truck(@food_truck1)    
             @event.add_food_truck(@food_truck2)    
@@ -134,7 +134,7 @@ RSpec.describe Event do
         end
     end
 
-    describe 'overstocked_items' do
+    describe '#overstocked_items' do
         it 'returns list of items sold by > 1 food truck and total inventory > 50' do
             @event.add_food_truck(@food_truck1)    
             @event.add_food_truck(@food_truck2)    

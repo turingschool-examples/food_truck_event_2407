@@ -20,7 +20,7 @@ RSpec.describe FoodTruck do
         end
     end
 
-    describe 'stock' do
+    describe '#stock' do
         it 'checks stock' do
             expect(@food_truck.check_stock(@item1)).to eq(0)
         end
