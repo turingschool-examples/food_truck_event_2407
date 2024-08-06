@@ -55,4 +55,20 @@ class Event
         end
         hash
     end
+
+    def overstocked_items
+        item_quantity = Hash.new(0)
+        @food_trucks.each do |truck|
+            truck.inventory.each do |item, quantity|
+                item_quantity[item] += quantity
+            end
+        end
+        overstock = []
+        item_quantity.each do |item, quantity|
+            if quantity > 50
+                overstock << item
+            end
+        end
+        overstock
+    end
 end
