@@ -21,4 +21,15 @@ attr_reader :name, :food_trucks
     def sorted_item_list
         @food_trucks.flat_map {|food_truck| food_truck.inventory.keys.map(&:name)}.uniq.sort
     end
+
+    def overstocked_items
+        all_items = @food_trucks.flat_map {|food_truck| food_truck.inventory.keys}
+        all_items.uniq.select do |item|
+        total_quantity(item) > 50 && food_trucks_that_sell(item).size > 1
+        end
+    end
+    
+    def total_quantity(item)
+        @food_trucks.sum {|food_truck| food_truck.check_stock(item)}
+    end
 end
