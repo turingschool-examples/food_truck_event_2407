@@ -32,6 +32,20 @@ class Event
         list.sort
     end
 
+
+    def total_inventory
+        inventory = Hash.new { |hash, key| hash[key] = {quantity: 0, food_trucks: []} }
+        @food_trucks.each do |truck|
+            truck.inventory.each do |item, quantity|
+                 next unless !inventory[item][:food_trucks].include?(truck)
+                 require 'pry'; binding.pry
+                inventory[item][:quantity] += quantity 
+                inventory[item][:food_trucks] << truck
+            end
+        end
+        inventory
+    end
+
     def overstocked_items
         overstock = []
 

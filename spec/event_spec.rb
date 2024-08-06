@@ -127,7 +127,7 @@ RSpec.describe Event do
 
             expected = {@item1 => {quantity: 100, food_trucks: [@food_truck1, @food_truck3]},
                         @item2 => {quantity: 7, food_trucks: [@food_truck1]},
-                        @item3 => {quantity: 25, food_trucks: [@food_truck3]}
+                        @item3 => {quantity: 25, food_trucks: [@food_truck2]}
                         }
 
             expect(@event.total_inventory).to eq(expected)
