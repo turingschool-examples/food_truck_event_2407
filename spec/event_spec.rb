@@ -67,4 +67,15 @@ RSpec.describe Event do
             expect(@event.food_trucks_that_sell(@item4)).to eq [@food_truck2]
         end
     end
+
+    describe "sorted_item_list" do
+        it "returns all alphabetically sorted array of all FoodTruck items names with no duplicates" do
+            expect(@event.sorted_item_list).to eq([
+                "Apple Pie (Slice)",
+                "Banana Nice Cream",
+                "Peach Pie (Slice)",
+                "Peach-Raspberry Nice Cream"
+            ])
+        end
+    end
 end
