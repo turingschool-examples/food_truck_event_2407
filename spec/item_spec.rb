@@ -7,15 +7,15 @@ RSpec.describe Item do
 
     describe '#initialize()' do
         it 'exists' do
-            expect(@@item).to be_a(Class_example)
+            expect(@item1).to be_a(Item)
         end
 
         it 'has a name' do
-            expect(@item.name).to eq("example")
+            expect(@item1.name).to eq('Peach Pie (Slice)')
         end
 
         it 'has a price' do
-            expect(@item.price).to eq("example")
+            expect(@item1.price).to eq(3.75)
         end
     end
 
