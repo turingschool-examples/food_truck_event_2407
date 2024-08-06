@@ -67,6 +67,12 @@ RSpec.describe Event do
             expect(@event.food_trucks_that_sell(@item1)).to eq(expected1)
             expect(@event.food_trucks_that_sell(@item4)).to eq(expected2)
         end
+
+        it 'doesnt return truck if item is out of stock' do
+            @food_truck2.stock(@item4, 0)  
+
+            expect(@event.food_trucks_that_sell(@item4)).to eq([])
+        end
     end
 
     describe '#potential revenue' do

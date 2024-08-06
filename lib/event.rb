@@ -18,9 +18,7 @@ class Event
 
     def food_trucks_that_sell(item)
         @food_trucks.find_all do |truck|
-            truck.inventory.keys.include?(item)
+            truck.inventory.keys.include?(item) && truck.inventory[item] > 0
         end
     end
-
-   
 end
