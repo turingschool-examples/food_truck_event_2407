@@ -48,6 +48,7 @@ class Event
     def sell(item, quantity) 
         quantity_demanded =  quantity # 50
         @food_trucks.each do |food_truck|
+            break if quantity_demanded == 0
             quantity_to_sell = food_truck.check_stock(item)
             next unless quantity_to_sell > 0
 
@@ -60,7 +61,7 @@ class Event
             end
         end
 
-        return true if quantity_demanded = 0
+        return true if quantity_demanded == 0
         return false if quantity_demanded > 0
     end
 end

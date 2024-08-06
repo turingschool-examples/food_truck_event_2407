@@ -151,5 +151,43 @@ RSpec.describe Event do
             expect(@food_truck1.check_stock(@item1)).to eq 0
             expect(@food_truck3.check_stock(@item1)).to eq 50
         end
+
+        it "prioritizes order of food trucks added" do
+            @event.add_food_truck(@food_truck3) # 65 of item1
+            @event.add_food_truck(@food_truck1) # 35 of item1
+            @event.add_food_truck(@food_truck2) # 0 of item 1
+
+            @event.sell(@item1, 50)
+
+            expect(@food_truck1.check_stock(@item1)).to eq 35
+            expect(@food_truck3.check_stock(@item1)).to eq 15
+        end
+
+        it "will retrun true if it sold all the quanity demanded" do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            expect(@event.sell(@item1, 50)).to eq true
+        end
+
+        it "will retrun false if it didn't sell all the quanity demanded" do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            expect(@event.sell(@item1, 150)).to eq false
+        end
+
+        it "will sell all items possible even despite returning false" do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            expect(@event.sell(@item1, 150)).to eq false
+
+            expect(@food_truck1.check_stock(@item1)).to eq 0
+            expect(@food_truck3.check_stock(@item1)).to eq 0
+        end
     end
 end
