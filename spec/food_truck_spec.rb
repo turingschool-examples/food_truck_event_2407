@@ -34,9 +34,11 @@ RSpec.describe FoodTruck do
         it 'returns inventory' do
             @food_truck.stock(@item1, 30)
 
-            expected = {@item1 => 30}
+            expect(@food_truck.inventory).to eq({@item1 => 30})
 
-            expect(@food_truck.inventory).to eq(expected)
+            @food_truck.stock(@item1, 25)
+
+            expect(@food_truck.inventory).to eq({@item1 => 55})
         end
     end
 end
