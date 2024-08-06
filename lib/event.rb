@@ -51,7 +51,6 @@ class Event
         item_quantities[item][:quantity] += quantity
       end
     end
-    
     overstocked = []
     item_quantities.each do |item, data|
       if data[:count] > 1 && data[:quantity] > 50
@@ -60,6 +59,24 @@ class Event
     end
     overstocked
   end
+
+  def total_inventory
+    inventory = {}
+  
+    @food_trucks.each do |food_truck|
+      food_truck.inventory.each do |item, quantity|
+        if inventory[item].nil?
+          inventory[item] = {quantity: 0, food_trucks: []}
+        end
+        inventory[item][:quantity] += quantity
+        if !inventory[item][:food_trucks].include?(food_truck)
+          inventory[item][:food_trucks] << food_truck
+        end
+      end
+    end
+    inventory
+  end
+
 end
 
 
