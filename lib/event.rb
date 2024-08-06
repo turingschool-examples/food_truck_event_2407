@@ -31,4 +31,5 @@ class Event
         end
         list.sort
     end
+
 end
