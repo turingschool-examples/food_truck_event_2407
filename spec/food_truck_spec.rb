@@ -7,33 +7,46 @@ end
 
 RSpec.describe FoodTruck do
     before(:each) do
-        @food_truck = FoodTruck.new("Rocky Mountain Pies")
+        @food_truck1 = FoodTruck.new("Rocky Mountain Pies")
+        @food_truck2 = FoodTruck.new("Ba-Nom-a-Nom")
+        @food_truck3 = FoodTruck.new("Palisade Peach Shack")
+
         @item1 = Item.new({name: 'Peach Pie (Slice)', price: "$3.75"})
         @item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
+        @item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
+        @item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
     end
 
     describe 'Initialize' do
         it 'exists' do
-            expect(@food_truck).to be_an_instance_of(FoodTruck)
+            expect(@food_truck1).to be_an_instance_of(FoodTruck)
+            expect(@food_truck2).to be_an_instance_of(FoodTruck)
+            expect(@food_truck3).to be_an_instance_of(FoodTruck)
         end
 
         it 'has a name' do
-            expect(@food_truck.name).to eq("Rocky Mountain Pies")
+            expect(@food_truck1.name).to eq("Rocky Mountain Pies")
+            expect(@food_truck2.name).to eq("Ba-Nom-a-Nom")
+            expect(@food_truck3.name).to eq("Palisade Peach Shack")
         end
 
         it 'has an inventory' do
-            expect(@food_truck.inventory).to eq({})
+            expect(@food_truck1.inventory).to eq({})
+            expect(@food_truck2.inventory).to eq({})
+            expect(@food_truck3.inventory).to eq({})
         end
     end
 
     describe 'inventory' do
         it 'checks the inventory of an item' do
-            expect(@food_truck.check_stock(@item1)).to eq(0)
+            expect(@food_truck1.check_stock(@item1)).to eq(0)
+            expect(@food_truck2.check_stock(@item1)).to eq(0)
+            expect(@food_truck3.check_stock(@item1)).to eq(0)
         end
 
         it 'can stock inventory' do
-            @food_truck.stock(@item1, 30)
-            expect(@food_truck.check_stock(@item1)).to eq(30)
+            @food_truck1.stock(@item1, 30)
+            expect(@food_truck1.check_stock(@item1)).to eq(30)
         end
     end
 end
