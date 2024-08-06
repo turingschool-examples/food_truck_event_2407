@@ -8,7 +8,6 @@ require './lib/food_truck'
 
 RSpec.configure do |config|
   config.default_formatter = 'doc'
-  config.mock_with :mocha
 end
 
 RSpec.describe 'Event Spec Harness' do
