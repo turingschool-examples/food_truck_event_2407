@@ -21,6 +21,6 @@ class FoodTruck
     end
 
     def list_items
-    
+        @inventory.map { |item, quantity| item.name}
     end
 end

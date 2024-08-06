@@ -19,5 +19,8 @@ class Event
         @food_trucks.find_all { |food_truck| food_truck.check_stock(item) > 0}
     end
 
-    def 
+    def sorted_item_list
+      all_items = @food_trucks.map { |food_truck| food_truck.list_items}
+      sorted_items = all_items.flatten.uniq.sort
+    end
 end

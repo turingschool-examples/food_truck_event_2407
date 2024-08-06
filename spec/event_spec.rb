@@ -70,6 +70,10 @@ RSpec.describe Event do
 
     describe "sorted_item_list" do
         it "returns all alphabetically sorted array of all FoodTruck items names with no duplicates" do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
             expect(@event.sorted_item_list).to eq([
                 "Apple Pie (Slice)",
                 "Banana Nice Cream",
