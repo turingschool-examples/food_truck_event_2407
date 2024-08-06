@@ -5,4 +5,8 @@ attr_reader :name, :inventory
         @name = name
         @inventory = {}
     end
+
+    def check_stock(item)
+        @inventory.fetch(item, 0)
+    end
 end
