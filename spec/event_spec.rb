@@ -20,6 +20,10 @@ RSpec.describe Event do
         it "has a name" do
             expect(@event.name).to eq "South Pearl Street Farmers Market"
         end
+
+        it "tracks food trucks; starts with none" do
+            expect(@event.food_truck).to eq []
+        end
     end
 
 end
