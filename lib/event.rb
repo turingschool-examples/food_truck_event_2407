@@ -1,10 +1,12 @@
+require 'date'
 
 class Event
-    attr_reader :name, :food_trucks
+    attr_reader :name, :food_trucks, :date
 
     def initialize(name)
         @name = name
         @food_trucks = []
+        @date = Date.today.strftime('%d/%m/%Y')# I utilized today as I don't have any other easy way of creating a date object without parsing dates.
     end
 
     def add_food_truck(food_truck)

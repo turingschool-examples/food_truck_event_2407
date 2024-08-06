@@ -1,6 +1,7 @@
 require './lib/item'
 require './lib/food_truck'
 require './lib/event'
+require 'date'
 
 RSpec.describe Event do
     before(:each) do
@@ -20,7 +21,10 @@ RSpec.describe Event do
         @food_truck3 = FoodTruck.new("Palisade Peach Shack")
         @food_truck3.stock(@item1, 65)     
 
+
+        allow(Date).to receive(:today).and_return(Date.new(2023, 2, 24))
         @event = Event.new("South Pearl Street Farmers Market")
+
     end
 
     describe "initialize" do
@@ -34,6 +38,10 @@ RSpec.describe Event do
 
         it "tracks food trucks; starts with none" do
             expect(@event.food_trucks).to eq []
+        end
+
+        it "has a date" do
+            expect(@event.date).to eq("24/02/2023")
         end
     end
 
