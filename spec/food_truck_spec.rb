@@ -16,6 +16,7 @@ RSpec.describe FoodTruck do
     describe 'initialize' do
         it 'exists' do
             expect(@food_truck).to be_a FoodTruck
+            expect(@food_truck.inventory).to eq({})
         end
         
     end
