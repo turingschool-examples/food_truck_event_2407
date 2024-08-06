@@ -3,6 +3,7 @@ require './lib/food_truck'
 
 RSpec.describe FoodTruck do
     before(:each) do
+        @item1 = Item.new({name: 'Peach Pie (Slice)', price: "$3.75"})
         @food_truck = FoodTruck.new("Rocky Mountain Pies")
 
     end
@@ -18,6 +19,12 @@ RSpec.describe FoodTruck do
 
         it "starts with empty inventory" do
             expect(@food_truck.inventory).to eq({})
+        end
+    end
+
+    describe "check_stock" do
+        it "checks if an item in stock, returns 0 if not" do
+            expect(@food_truck.check_stock(@item1)).to eq 0
         end
     end
 end
