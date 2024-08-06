@@ -22,7 +22,7 @@ RSpec.describe Event do
         end
 
         it "tracks food trucks; starts with none" do
-            expect(@event.food_truck).to eq []
+            expect(@event.food_trucks).to eq []
         end
     end
 
