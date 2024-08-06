@@ -3,6 +3,6 @@ class Item
 
     def initialize(data)
         @name = data[:name]
-        @price = data[:price].delete('$').to_f #FIX!!!!
+        @price = '%.2f' % data[:price].delete('$').to_f #FIX!!!!
     end
 end

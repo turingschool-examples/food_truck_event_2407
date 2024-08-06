@@ -16,7 +16,8 @@ RSpec.describe Item do
         end
 
         it 'has a price' do
-            expect(@item2.price).to eq(2.50)
+            expected = '%.2f' % 2.50
+            expect(@item2.price).to eq(expected)
         end
     end
 end
