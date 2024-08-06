@@ -37,4 +37,21 @@ class Event
         end
         sorted_item_list.uniq.sort
     end
+
+    def overstocked_items
+        overstocked_items = []
+        @food_trucks.each do |truck|
+            total_qty_of_item = 0
+            truck.inventory.each do |item, quantity|
+                if food_trucks_that_sell(item).count > 1
+                    total_qty_of_item += quantity
+                end
+
+                if total_qty_of_item > 50
+                    overstocked_items << item
+                end
+            end
+        end
+        overstocked_items
+    end
 end

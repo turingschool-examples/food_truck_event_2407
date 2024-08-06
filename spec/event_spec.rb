@@ -75,4 +75,14 @@ RSpec.describe Event do
         end
     end
 
+    describe 'overstocked items' do
+        it 'can return an array of item objects that are overstocked' do
+            @event.add_food_truck(@food_truck1)  
+            @event.add_food_truck(@food_truck2)  
+            @event.add_food_truck(@food_truck3)
+
+            expect(@event.overstocked_items).to eq [@item1]
+        end
+    end
+
 end
