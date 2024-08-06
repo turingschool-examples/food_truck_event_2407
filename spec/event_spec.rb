@@ -99,5 +99,30 @@ RSpec.describe Event do
             @event.set_date(4, 20, 2020)
             expect(@event.date).to eq("04/20/2020")
         end
+
+        it 'can #sell' do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+            expect(@event.sell(@item2, 35)).to eq false
+            expect(@event.sell(@item1, 35)).to eq true
+        end
+
+        it 'updates the inventory of total and individual trucks' do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+            @event.sell(@item1, 35)
+            
+            expected = {
+                @item1 => {quantity: 65, food_trucks: [@food_truck1, @food_truck3]},
+                @item2 => {quantity: 7, food_trucks: [@food_truck1]},
+                @item3 => {quantity: 25, food_trucks: [@food_truck2]},
+                @item4 => {quantity: 50, food_trucks: [@food_truck2]}
+            }
+            expect(@event.total_inventory).to eq(expected)
+            expect(@event.food_trucks[0].inventory[item]).to eq 0
+            expect(@event.food_trucks[1].inventory[item]).to eq 35
+        end
     end
 end

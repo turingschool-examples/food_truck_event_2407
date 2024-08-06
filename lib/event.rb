@@ -85,4 +85,13 @@ class Event
     def set_date(month, day, year)
         @date = Date.new(year, month, day).strftime("%m/%d/%Y")
     end
+
+    def sell(item, amount)
+        if total_inventory[item][:quantity] > amount
+            true
+        else
+            false
+        end
+    
+    end
 end
