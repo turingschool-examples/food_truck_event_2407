@@ -11,4 +11,8 @@ class Event
             @food_trucks << food_truck
         end
     end
+    
+    def food_truck_names
+        food_trucks.map { |ft| ft.name}
+    end
 end
