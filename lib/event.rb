@@ -37,8 +37,8 @@ class Event
         inventory = Hash.new { |hash, key| hash[key] = {quantity: 0, food_trucks: []} }
         @food_trucks.each do |truck|
             truck.inventory.each do |item, quantity|
-                 next unless !inventory[item][:food_trucks].include?(truck)
-                 require 'pry'; binding.pry
+                next unless !inventory[item][:food_trucks].include?(truck)
+                #  require 'pry'; binding.pry
                 inventory[item][:quantity] += quantity 
                 inventory[item][:food_trucks] << truck
             end
