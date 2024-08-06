@@ -23,6 +23,7 @@ class Event
       truck.check_stock(item) > 0 
     end
   end
+  
 
   def unique_item_names
     # put all items into a single array
