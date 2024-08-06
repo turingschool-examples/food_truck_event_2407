@@ -35,6 +35,14 @@ RSpec.describe Event do
         end
     end
 
+    # describe '#date' do
+    #     it 'has a date' do
+    #         allow(@event).to receive(:date)and_return("08/05/2024")
+
+    #         expect(@event.date).to eq "08/05/2024"
+    #     end
+    # end
+
     describe '#add food truck' do
         it 'can add a food truck to an event' do
             @event.add_food_truck(@food_truck1)  
