@@ -64,5 +64,17 @@ RSpec.describe Event do
 
             expect(@event.sorted_item_list).to eq([@item2.name, @item4.name, @item1.name, @item3.name])
         end
+
+        it '#overstocked_items' do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            expect(@event.overstocked_items).to eq([@item1])
+
+            @food_truck3.stock(@item4, 5)
+
+            expect(@event.overstocked_items).to eq([@item1, @item4])
+        end
     end
 end
