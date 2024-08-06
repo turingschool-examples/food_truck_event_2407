@@ -40,4 +40,27 @@ RSpec.describe Food_Truck do
         expect(food_truck.check_stock(item1)).to eq(30)
     end
 
+    it 'stocks sums' do
+        food_truck = Food_Truck.new("Rocky Mountain Pies")
+        item1 = Item.new(name: 'Peach Pie (Slice)', price: "$3.75")
+
+        food_truck.stock(item1, 30)
+        food_truck.stock(item1, 25)
+
+        food_truck.check_stock(item1)
+        
+        expect(food_truck.check_stock(item1)).to eq(55)
+    end
+
+    it 'stocks again' do
+        food_truck = Food_Truck.new("Rocky Mountain Pies")
+        item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
+
+        food_truck.stock(item2, 12)
+
+        food_truck.check_stock(item2)
+        
+        expect(food_truck.check_stock(item2)).to eq(12)
+    end
+
 end
