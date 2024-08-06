@@ -30,4 +30,21 @@ class Event
         end
         sorted_list.uniq.sort
     end
+    
+    def total_inventory
+        food_inventory = {}
+        @food_trucks.each do |food_truck|
+            food_truck.inventory.each do |item, quantity|
+                food_inventory[item] ||= {quantity: 0, food_trucks: []}
+                food_inventory[item][:quantity] += quantity
+                food_inventory[item][:food_trucks] << food_truck
+            end
+        end
+        food_inventory
+    end
+# had to look up and use (||= OR assignment) on ln 38 to stop @item1 from += into following food_truck3 that carries it.
+
+    # def overstocked_items
+    #     @food_trucks
+    # end
 end

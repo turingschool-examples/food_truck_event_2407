@@ -70,7 +70,7 @@ RSpec.describe Event do
         expect(@event.sorted_item_list).to eq(['Apple Pie (Slice)', "Banana Nice Cream", 'Peach Pie (Slice)', "Peach-Raspberry Nice Cream"])
     end
 
-    xit '#total_inventory returns a hash of total inventory that reports the available inventory of all items sold at the event' do
+    it '#total_inventory returns a hash of total inventory that reports the available inventory of all items sold at the event' do
         @food_truck1.stock(@item1, 35)
         @food_truck1.stock(@item2, 7)  
 
@@ -84,7 +84,7 @@ RSpec.describe Event do
         @event.add_food_truck(@food_truck3)
 
         expected = {
-            @item 1> => {
+            @item1 => {
                 quantity: 100,
                 food_trucks: [@food_truck1, @food_truck3]
             },
@@ -105,7 +105,7 @@ RSpec.describe Event do
         expect(@event.total_inventory).to eq(expected)
     end
 
-    it '#overstocked_items returns an array of items sold by more than 1 food truck AND the total quantity is greater than 50' do
+    xit '#overstocked_items returns an array of items sold by more than 1 food truck AND the total quantity is greater than 50' do
         @food_truck1.stock(@item1, 35)
         @food_truck1.stock(@item2, 7)  
 
