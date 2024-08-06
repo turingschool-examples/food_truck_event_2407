@@ -14,4 +14,10 @@ RSpec.describe FoodTruck do
         expect(@food_truck.name).to eq("Rocky Mountain Pies")
         expect(@food_truck.inventory).to eq({})
     end
+
+    it '#check_stock checks inventory for items' do
+        @food_truck.check_stock(@item1)
+
+        expect(@food_truck.check_stock(@item1)).to eq 0
+    end
 end
