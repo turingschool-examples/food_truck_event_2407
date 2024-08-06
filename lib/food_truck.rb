@@ -5,4 +5,8 @@ class FoodTruck
         @name = name
         @inventory = {}
     end
+
+    def stock(item, quantitiy)
+        inventory[item] = quantitiy
+    end
 end

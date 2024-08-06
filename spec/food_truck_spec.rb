@@ -27,6 +27,13 @@ RSpec.describe Item do
             @food_truck.stock(@item1, 30)
 
             expect(@food_truck.inventory).to eq({@item1 => 30})
+
+            @food_truck.stock(@item1, 50) #CAN UPDATE EXISITING KEYS
+            expect(@food_truck.inventory).to eq({@item1 => 50})
+
+            @food_truck.stock(@item2, 50)
+
+            expect(@food_truck.inventory).to eq({@item1 => 50 , @item2 => 50})
         end
     end
 
