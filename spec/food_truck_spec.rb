@@ -31,7 +31,7 @@ RSpec.describe Item do
             @food_truck.stock(@item1, 50) #CAN UPDATE EXISITING KEYS
             expect(@food_truck.inventory).to eq({@item1 => 50})
 
-            @food_truck.stock(@item2, 50)
+            @food_truck.stock(@item2, 50) #CAN HOLD MULTIPLE KVPs
 
             expect(@food_truck.inventory).to eq({@item1 => 50 , @item2 => 50})
         end
@@ -39,7 +39,10 @@ RSpec.describe Item do
 
     describe '#check_stock()' do
         it 'returns quantity of specified item in inventory' do
-
+            @food_truck.stock(@item1, 30)
+            @food_truck.stock(@item2, 50)
+            expect (@food_truck.check_stock(@item1)).to eq(30)
+            expect (@food_truck.check_stock(@item2)).to eq(50)
         end
 
         it 'returns 0 if the specified item is not in stock' do
