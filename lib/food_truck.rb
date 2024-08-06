@@ -9,4 +9,12 @@ class FoodTruck
     def stock(item, quantitiy)
         inventory[item] = quantitiy
     end
+
+    def check_stock(item)
+        if inventory[item] == nil || inventory[item] == 0
+            0
+        else
+            inventory[item]
+        end
+    end
 end

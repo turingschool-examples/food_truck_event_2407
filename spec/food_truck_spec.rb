@@ -41,13 +41,13 @@ RSpec.describe Item do
         it 'returns quantity of specified item in inventory' do
             @food_truck.stock(@item1, 30)
             @food_truck.stock(@item2, 50)
-            expect (@food_truck.check_stock(@item1)).to eq(30)
-            expect (@food_truck.check_stock(@item2)).to eq(50)
+            expect(@food_truck.check_stock(@item1)).to eq(30)
+            expect(@food_truck.check_stock(@item2)).to eq(50)
         end
 
         it 'returns 0 if the specified item is not in stock' do
             expect(@food_truck.inventory).to eq({})
-            expect (@food_truck.check_stock(@item1)).to eq(0)
+            expect(@food_truck.check_stock(@item1)).to eq(0)
 
         end
     end
