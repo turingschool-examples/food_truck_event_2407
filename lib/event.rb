@@ -88,10 +88,33 @@ class Event
 
     def sell(item, amount)
         if total_inventory[item][:quantity] > amount
+            update_inventory(item, amount)
             true
         else
             false
         end
-    
     end
+
+    def update_inventory(item, amount)
+        sold = 0
+        trucks = total_inventory[item][:food_trucks]
+        i = 0
+        until i == trucks.count
+            if trucks[i].check_stock(item) > 0
+                stock = trucks[i].check_stock(item)
+                if stock >= amount
+                    trucks[i].stock(item, -amount)
+                    i += 1
+                    sold = amount
+                else
+                    trucks[i].stock(item, 0)
+                    i +=1
+                    sold = amount - stock
+                end
+            else
+                i += 1
+            end
+        end
+    end
+
 end
