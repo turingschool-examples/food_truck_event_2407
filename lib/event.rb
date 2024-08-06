@@ -40,4 +40,19 @@ class Event
         end
         names_list.sort.uniq
     end
+
+    def total_inventory
+        hash = {}
+        @food_trucks.each do |truck|
+            truck.inventory.each do |item, num|
+                if hash[item]
+                    hash[item][:quantity] += num
+                    hash[item][:food_trucks] << truck
+                else
+                    hash[item] = {quantity: num, food_trucks: [truck]}
+                end
+            end
+        end
+        hash
+    end
 end
