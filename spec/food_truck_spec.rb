@@ -31,8 +31,9 @@ RSpec.describe FoodTruck do
     describe "stock" do
         it "stocks the inventory" do
             @food_truck.stock(@item1,30)
-            
-            expect(@food_truck.check_stock(@item1)).to eq 30
+            @food_truck.stock(@item1,25)
+
+            expect(@food_truck.check_stock(@item1)).to eq 55
         end
     end
 end
