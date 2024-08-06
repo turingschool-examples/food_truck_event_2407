@@ -105,7 +105,7 @@ RSpec.describe Event do
         expect(@event.total_inventory).to eq(expected)
     end
 
-    xit '#overstocked_items returns an array of items sold by more than 1 food truck AND the total quantity is greater than 50' do
+    it '#overstocked_items returns an array of items sold by more than 1 food truck AND the total quantity is greater than 50' do
         @food_truck1.stock(@item1, 35)
         @food_truck1.stock(@item2, 7)  
 

@@ -42,9 +42,15 @@ class Event
         end
         food_inventory
     end
-# had to look up and use (||= OR assignment) on ln 38 to stop @item1 from += into following food_truck3 that carries it.
+# had to look up and use (||= OR assignment) on ln 38 to stop @item1 from += into following food_truck3 that carries it. 
 
-    # def overstocked_items
-    #     @food_trucks
-    # end
+    def overstocked_items
+        overstock = []
+        total_inventory.each do |item, value|
+            if value[:food_trucks].count > 1 && value[:quantity] > 50 
+                overstock << item
+            end
+        end
+        overstock
+    end
 end
