@@ -108,4 +108,23 @@ RSpec.describe Item do
             expect(@event.sorted_item_list).to eq(expected)
         end
     end
+
+    describe '#overstocked_items' do
+        it 'returns an array of items objects where each item is both sold by more than 1 food truck & has a combined quanitiy greater than 50' do
+            @food_truck1.stock(@item1, 35)
+            @food_truck1.stock(@item2, 7)
+            @food_truck2.stock(@item3, 25)
+            @food_truck2.stock(@item4, 50)
+            @food_truck3.stock(@item2, 45) #OVERSTOCKED
+            @food_truck3.stock(@item1, 16) #OVERSTOCKED
+
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            expected = [@item2, @item1]
+
+            expect(@event.overstocked_items).to eq(expected)
+        end
+    end
 end
