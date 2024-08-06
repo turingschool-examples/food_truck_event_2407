@@ -21,4 +21,13 @@ class FoodTruck
             0
         end
     end
+
+    def potential_revenue
+        potential_revenue = 0
+        @inventory.each do |item, quantity|
+            price = item.price.gsub("$", "").to_f
+            potential_revenue += price * quantity
+        end
+        potential_revenue
+    end
 end

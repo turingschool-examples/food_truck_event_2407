@@ -27,4 +27,5 @@ class Event
         end
         trucks_that_sell
     end
+
 end
