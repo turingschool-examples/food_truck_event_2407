@@ -65,6 +65,18 @@ class Event
         returned
     end    
 
-
+    def total_inventory
+        total = {}
+        @food_trucks.each do |truck|
+            truck.inventory.each do |item, stock|
+                if total[item].nil? 
+                    total[item] = {quantity: 0, food_trucks: []}
+                end
+                total[item][:quantity] += stock
+                total[item][:food_trucks] << truck
+            end
+        end
+        total
+    end
         
 end
