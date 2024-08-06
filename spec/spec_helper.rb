@@ -8,3 +8,4 @@ end
 
 require './lib/item.rb'
 require './lib/food_truck.rb'
+require './lib/event.rb'
