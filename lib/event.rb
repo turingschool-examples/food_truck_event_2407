@@ -19,4 +19,11 @@ class Event
   def food_trucks_that_sell(item)
     @food_trucks.select {|food_truck| food_truck.check_stock(item) > 0}
   end
+
+  def sorted_item_list
+    item_names = @food_trucks.flat_map do |food_truck| 
+      food_truck.inventory.keys.map(&:name)
+    end
+    item_names.uniq.sort
+  end
 end
