@@ -35,4 +35,16 @@ RSpec.describe Item do
             expect(@event.food_trucks).to eq(expected)
         end
     end
+
+    describe 'food_truck_names' do
+        it 'returns an array of food truck name in the food_trucks array' do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            expected = ["Rocky Mountain Pies", "Ba-Nom-a-Nom", "Palisade Peach Shack"]
+
+            expect(@event.food_truck_names).to eq(expected)
+        end
+    end
 end
