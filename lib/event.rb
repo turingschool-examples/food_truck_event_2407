@@ -21,4 +21,14 @@ class Event
             food_truck.inventory.include?(item)
         end
     end
+
+
+    def sorted_item_list
+        output = []
+        @food_trucks.each do |food_truck|
+            food_truck.inventory.each { |item|  output << item[0].name}
+        end
+        output.uniq!
+        output.sort { |a, b| a <=> b }
+    end
 end
