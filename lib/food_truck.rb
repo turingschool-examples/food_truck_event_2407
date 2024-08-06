@@ -6,8 +6,12 @@ class FoodTruck
         @inventory = {}
     end
 
-    def stock(item, quantitiy)
-        inventory[item] = quantitiy
+    def stock(item, quantity)
+        if inventory[item]
+            inventory[item] += quantity
+          else
+            inventory[item] = quantity
+          end
     end
 
     def check_stock(item)
