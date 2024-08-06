@@ -8,7 +8,8 @@ class FoodTruck
     end
 
     def stock(item_name, quantity)
-
+        stock = 0
+        @items.each do |item|
     end
 
     def check_stock(stock)
@@ -16,7 +17,10 @@ class FoodTruck
     end
 
     def inventory 
-        @inventory = {}
+        inventory = {}
+        @food_trucks.each do |food_truck|
+
+        end
     end
 
     def potential_revenue
