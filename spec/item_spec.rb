@@ -13,7 +13,7 @@ RSpec.describe Item do
         end
 
         it 'has a name' do
-            expect(@item1.food).to eq 'Peach Pie (Slice)'
+            expect(@item1.name).to eq 'Peach Pie (Slice)'
         end
 
         it 'has a price' do

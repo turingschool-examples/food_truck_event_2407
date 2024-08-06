@@ -3,10 +3,10 @@
 
 class Item
 
-    attr_reader :food, :price
+    attr_reader :name, :price
 
     def initialize(meal)
-        @food = meal[:name]
+        @name = meal[:name]
         @price = meal[:price][1..-1].to_f
     end
 end
