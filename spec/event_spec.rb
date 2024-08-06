@@ -37,7 +37,7 @@ RSpec.describe Event do
         expect(@event.food_truck_names).to eq(["Rocky Mountain Pies", "Ba-Nom-a-Nom", "Palisade Peach Shack"]) 
     end
 
-    it '#food_trucks_that_sell lists food trucks that sell a particular item' do
+    it '#food_trucks_that_sell finds/lists food trucks that sell a particular item' do
         @food_truck1.stock(@item1, 35)
         @food_truck1.stock(@item2, 7)  
 
