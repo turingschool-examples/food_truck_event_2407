@@ -1,6 +1,7 @@
 require './lib/item'
 require './lib/food_truck'
 require './lib/event'
+require 'date'
 
 RSpec.describe Event do 
   before(:each) do 
@@ -114,5 +115,11 @@ RSpec.describe Event do
     @food_truck3.stock(@item1, 65)
 
     expect(@event.overstocked_items).to eq ([@item1])
+  end
+
+  it 'returns the date of the event' do 
+    # did i need to add an event?
+    allow(Date).to receive(:today).and_return(Date.new(2023, 2, 24))
+    expect(@event.date).to eq("24/02/2023")
   end
 end

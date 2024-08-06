@@ -1,9 +1,10 @@
 class Event 
 
-  attr_reader :name, :food_trucks
-  def initialize(name)
+  attr_reader :name, :food_trucks, :date
+  def initialize(name, date = Date.today )
     @name = name
     @food_trucks = []
+    @date = date
   end
 
   def add_food_truck(food_truck)
@@ -84,5 +85,11 @@ class Event
       end
     end
     overstocked
+  end
+  
+  def date
+    # used stackoverflow
+    @date.strftime("%d/%m/%Y")
+    # require 'pry'; binding.pry
   end
 end
