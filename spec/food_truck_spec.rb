@@ -31,5 +31,7 @@ RSpec.describe FoodTruck do
         end
 
         it 'can check stock' do
+            
+        end
     end
 end
