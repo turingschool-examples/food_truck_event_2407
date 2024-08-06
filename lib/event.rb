@@ -28,18 +28,38 @@ class Event
     food_trucks_item
   end
 
-    def all_items_in_stock
-      all_items = []
-      @food_trucks.each do |food_truck|
-        food_truck.inventory.each_key do |item|
-          all_items << item
-        end
+  def all_items_in_stock
+    all_items = []
+    @food_trucks.each do |food_truck|
+      food_truck.inventory.each_key do |item|
+        all_items << item
       end
-    
-      unique_items = all_items.uniq { |item| item.name }
-      sorted_items = unique_items.sort_by { |item| item.name }
-      sorted_items.map { |item| item.name }
     end
+    unique_items = all_items.uniq { |item| item.name }
+    sorted_items = unique_items.sort_by { |item| item.name }
+    sorted_items.map { |item| item.name }
+  end
+
+  def overstocked_items
+    item_quantities = {}
+    @food_trucks.each do |food_truck|
+      food_truck.inventory.each do |item, quantity|
+        if item_quantities[item].nil?
+          item_quantities[item] = {count: 0, quantity: 0}
+        end
+        item_quantities[item][:count] += 1
+        item_quantities[item][:quantity] += quantity
+      end
+    end
+    
+    overstocked = []
+    item_quantities.each do |item, data|
+      if data[:count] > 1 && data[:quantity] > 50
+        overstocked << item
+      end
+    end
+    overstocked
+  end
 end
 
 
