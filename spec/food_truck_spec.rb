@@ -22,6 +22,9 @@ RSpec.describe FoodTruck do
     end
 
     it '#stock adds items to inventory hash' do
+        @item1 = Item.new({name: 'Peach Pie (Slice)', price: "$3.75"})
+        @item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
+
         @food_truck.stock(@item1, 30)
 
         expect(@food_truck.inventory).to eq({@item1 => 30})
@@ -33,7 +36,6 @@ RSpec.describe FoodTruck do
 
         @food_truck.stock(@item2, 12)
 
-        expect(@food_truck.inventory).to eq({@item1 => 30, @item2 => 12})
-
+        expect(@food_truck.inventory).to eq({@item1 => 55, @item2 => 12})
     end
 end
