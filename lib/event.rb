@@ -68,4 +68,20 @@ class Event
     # require 'pry'; binding.pry
     item_inventory
   end
+
+  def overstocked_items
+    # create array
+    # iterate through totol_inventory hash |item, info|
+    # we need food trucks that has the same item in the inventory > 1
+    # we also need the quantity to be > 50 
+    # if those conditions match push the item into array
+    overstocked = []
+
+    total_inventory.each do |item, info|
+      if info[:food_trucks].length > 1 && info[:quantity] > 50
+        overstocked << item
+      end
+    end
+    overstocked
+  end
 end
