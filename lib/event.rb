@@ -5,4 +5,30 @@ class Event
     @name = name
     @food_trucks = []
   end
+
+  def add_food_truck(food_truck)
+    @food_trucks.push(food_truck)
+  end
+
+  def food_truck_names
+    names = []
+    @food_trucks.each do |food_truck|
+      names << food_truck.name
+    end
+    names
+  end
+
+  def food_trucks_that_sell(item)
+    food_trucks_item = []
+    @food_trucks.each do |food_truck|
+      if food_truck.inventory.include?(item)
+        food_trucks_item << food_truck
+      end
+    end
+    food_trucks_item
+  end
 end
+
+
+
+
