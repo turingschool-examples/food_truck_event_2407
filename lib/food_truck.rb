@@ -23,4 +23,13 @@ class FoodTruck
     def list_items
         @inventory.map { |item, quantity| item.name}
     end
+    
+    def sell_items(item, quantity)
+        return false unless can_sell?(item,quantity)
+        @inventory[item] -= quantity
+    end
+
+    def can_sell?(item, quantity)
+        @inventory[item] >= quantity
+    end
 end

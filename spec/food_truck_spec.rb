@@ -63,4 +63,23 @@ RSpec.describe FoodTruck do
         end
     end
 
+    describe "sell_items" do
+        it "will reduce the inventory for item quantity sold" do
+            @food_truck.stock(@item1,30)
+            @food_truck.sell_items(@item1,14)
+
+            expect(@food_truck.inventory[@item1]).to eq 16
+        end
+    end
+
+    describe "can_sell?" do
+        it "will return true or false if the item can be sold based on quantity" do
+            @food_truck.stock(@item1,30)
+
+            expect(@food_truck.can_sell?(@item1,40)).to eq false
+            @food_truck.stock(@item1,10)
+
+            expect(@food_truck.can_sell?(@item1,40)).to eq true
+        end
+    end
 end
