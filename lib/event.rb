@@ -27,4 +27,16 @@ class Event
         end
         trucks
     end
+
+    def sorted_item_list
+        items = []
+        @food_trucks.each do |truck|
+            truck.inventory.each do |item, _|
+                if !items.include?(item.name)
+                    items << item.name
+                end
+            end
+        end
+        items.sort
+    end
 end
