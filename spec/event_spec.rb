@@ -90,5 +90,14 @@ RSpec.describe Event do
             }
             expect(@event.total_inventory).to eq(expected)
         end
+
+        it 'has #date' do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            @event.set_date(4, 20, 2020)
+            expect(@event.date).to eq("04/20/2020")
+        end
     end
 end

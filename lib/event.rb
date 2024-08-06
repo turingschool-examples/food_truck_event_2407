@@ -1,9 +1,12 @@
+require 'date'
+
 class Event
-    attr_reader :name, :food_trucks
+    attr_reader :name, :food_trucks, :date
 
     def initialize(name)
         @name = name
         @food_trucks = []
+        @date = Date.today.strftime("%m/%d/%Y")
     end
 
     def add_food_truck(truck)
@@ -79,4 +82,7 @@ class Event
         total
     end
         
+    def set_date(month, day, year)
+        @date = Date.new(year, month, day).strftime("%m/%d/%Y")
+    end
 end
