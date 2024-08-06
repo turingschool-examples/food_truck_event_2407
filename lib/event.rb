@@ -28,44 +28,18 @@ class Event
     food_trucks_item
   end
 
-
-  # def all_items_in_stock
-  #     all_items = @food_trucks.flat_map do |food_truck|
-  #       food_truck.inventory.keys
-  #     end
-  #     unique_items = all_items.uniq { |item| item.name }
-  #     unique_items.sort_by { |item| item.name }.map(&:name)
-  #   end
-
-  def all_items_in_stock
-    all_items = []
-    @food_trucks.each do |food_truck|
-      food_truck.inventory.each_key do |item|
-        all_items << item
-      end
-    end
-    unique_items = []
-    all_items.each do |item|
-      found_duplicate = false
-      unique_items.each do |unique_item|
-        if unique_item.name == item.name
-          found_duplicate = true
-          break
+    def all_items_in_stock
+      all_items = []
+      @food_trucks.each do |food_truck|
+        food_truck.inventory.each_key do |item|
+          all_items << item
         end
       end
-      unless found_duplicate
-        unique_items << item
-      end
+    
+      unique_items = all_items.uniq { |item| item.name }
+      sorted_items = unique_items.sort_by { |item| item.name }
+      sorted_items.map { |item| item.name }
     end
-    sorted_items = unique_items.sort do |item1, item2|
-      item1.name <=> item2.name
-    end
-    item_names = []
-    sorted_items.each do |item|
-      item_names << item.name
-    end
-    item_names
-  end
 end
 
 
