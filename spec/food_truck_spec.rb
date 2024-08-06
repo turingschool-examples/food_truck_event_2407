@@ -15,6 +15,7 @@ RSpec.describe FoodTruck do
         @item2 = Item.new({name: 'Apple Pie (Slice)', price: '$2.50'})
         @item3 = Item.new({name: "Peach-Raspberry Nice Cream", price: "$5.30"})
         @item4 = Item.new({name: "Banana Nice Cream", price: "$4.25"})
+        
     end
 
     describe 'Initialize' do
@@ -47,6 +48,20 @@ RSpec.describe FoodTruck do
         it 'can stock inventory' do
             @food_truck1.stock(@item1, 30)
             expect(@food_truck1.check_stock(@item1)).to eq(30)
+        end
+    end
+
+    describe 'potential revenue' do
+        it 'returns sum of items sold' do
+            @food_truck1.stock(@item1, 35)
+            @food_truck1.stock(@item2, 7)
+            @food_truck2.stock(@item4, 50)
+            @food_truck2.stock(@item3, 25)
+            @food_truck3.stock(@item1, 65)
+
+            expect(@food_truck1.potential_revenue).to eq((@item1.price * 35) + (@item2.price * 7))
+            expect(@food_truck2.potential_revenue).to eq((@item4.price * 50) + (@item3.price * 25))
+            expect(@food_truck3.potential_revenue).to eq(@item1.price * 65)
         end
     end
 end
