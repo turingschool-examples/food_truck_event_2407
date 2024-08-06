@@ -11,5 +11,9 @@ class Event
         @food_trucks << food_truck
     end
 
-    
+    def food_truck_names
+        names = [] 
+        @food_trucks.each { |food_truck| names << food_truck.name }
+        names
+    end
 end
