@@ -53,4 +53,13 @@ RSpec.describe FoodTruck do
             expect(@food_truck.potential_revenue).to eq 175
         end
     end
+
+    describe "list items" do
+        it "returns a list of all item names for sale" do
+            @food_truck.stock(@item1,30)
+            @food_truck.stock(@item2,25)
+
+            expect(@food_truck.list_items).to eq([@item1.name, @item2.name])
+        end
+    end
 end
