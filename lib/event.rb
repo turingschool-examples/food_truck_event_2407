@@ -5,8 +5,4 @@ class Event
         @name = name
         @food_trucks = food_trucks
     end
-
-    def potential_revenue
-        
-    end
 end

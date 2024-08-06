@@ -14,4 +14,12 @@ class FoodTruck
     def check_stock(stock)
 
     end
+
+    def inventory 
+        @inventory = {}
+    end
+
+    def potential_revenue
+        
+    end
 end
