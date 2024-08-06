@@ -1,6 +1,7 @@
 require './lib/item'
 require './lib/food_truck'
 require './lib/event'
+require 'date'
 
 RSpec.configure do |config|
     config.formatter = :documentation
