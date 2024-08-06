@@ -24,4 +24,12 @@ class FoodTruck
       @inventory[item] = quantity
     end
   end
+
+  def potential_revenue
+    # this method helps event
+    # multiplying item with quantity
+    @inventory.sum do |item,quantity|
+      item.price * quantity
+    end
+  end
 end
