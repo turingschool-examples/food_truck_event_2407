@@ -21,4 +21,14 @@ class Event
             truck.inventory.keys.include?(item) && truck.inventory[item] > 0
         end
     end
+
+    def sorted_item_list
+        list = []
+         @food_trucks.each do |truck|
+            truck.inventory.each do |item, quantity|
+               list << item.name if !list.include?(item.name)
+            end
+        end
+        list.sort
+    end
 end
