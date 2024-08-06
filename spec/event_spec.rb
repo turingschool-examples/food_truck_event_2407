@@ -117,12 +117,13 @@ RSpec.describe Item do
             @food_truck2.stock(@item4, 50)
             @food_truck3.stock(@item2, 45) #OVERSTOCKED
             @food_truck3.stock(@item1, 16) #OVERSTOCKED
+            @food_truck3.stock(@item3, 5) #NOT OVERSTOCKED
 
             @event.add_food_truck(@food_truck1)
             @event.add_food_truck(@food_truck2)
             @event.add_food_truck(@food_truck3)
 
-            expected = [@item2, @item1]
+            expected = [@item1, @item2]
 
             expect(@event.overstocked_items).to eq(expected)
         end
