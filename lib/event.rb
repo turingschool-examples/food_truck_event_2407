@@ -26,4 +26,19 @@ class Event
     end
     item_names.uniq.sort
   end
+
+  def total_inventory
+    inventory_hash = Hash.new { |hash, key| hash[key] = { quantity: 0, food_trucks: [] } }
+  
+    @food_trucks.each do |food_truck|
+      food_truck.inventory.each do |item, quantity|
+        inventory_hash[item][:quantity] += quantity
+        unless inventory_hash[item][:food_trucks].include?(food_truck)
+          inventory_hash[item][:food_trucks] << food_truck
+        end
+      end
+    end
+    inventory_hash
+  end
+    
 end
