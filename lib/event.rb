@@ -32,4 +32,28 @@ class Event
         list.sort
     end
 
+    def overstocked_items
+        overstock = []
+
+        unique_items = @food_trucks.map do |truck|
+            truck.inventory.keys
+        end.flatten.uniq
+        # unique_items = unique
+
+        unique_items.each do |item|
+            total_quantity = 0
+            total_trucks = 0
+
+            @food_trucks.each do |truck|
+                # require 'pry'; binding.pry
+                total_quantity += truck.inventory[item]
+                total_trucks += 1
+            end
+
+            if total_quantity > 50 && total_trucks > 1
+                overstock << item
+            end
+        end
+        overstock
+    end
 end
