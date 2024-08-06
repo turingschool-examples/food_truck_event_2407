@@ -18,5 +18,4 @@ RSpec.describe Item do
             expect(@item1.price).to eq(3.75)
         end
     end
-
 end
