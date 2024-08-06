@@ -63,7 +63,6 @@ RSpec.describe Event do
   end 
 
   it 'can return an array with all items the food trucks have in stock' do
-    
     @food_truck1.stock(@item1, 35)  
     @food_truck1.stock(@item2, 7)
     @food_truck2.stock(@item4, 50)    
@@ -78,7 +77,6 @@ RSpec.describe Event do
   end
 
   it 'can return an array with all overstocked items' do
-    
     @food_truck1.stock(@item1, 35)  
     @food_truck1.stock(@item2, 7)
     @food_truck2.stock(@item4, 50)    
@@ -90,6 +88,26 @@ RSpec.describe Event do
     @event.add_food_truck(@food_truck3)
 
     expect(@event.overstocked_items).to eq([@item1])
+  end
+
+  it "can return total inventory" do
+    @food_truck1.stock(@item1, 35)  
+    @food_truck1.stock(@item2, 7)
+    @food_truck2.stock(@item4, 50)    
+    @food_truck2.stock(@item3, 25)
+    @food_truck3.stock(@item1, 65)  
+
+    @event.add_food_truck(@food_truck1)
+    @event.add_food_truck(@food_truck2)
+    @event.add_food_truck(@food_truck3)
+    
+    expected_inventory = {
+      @item1 => {quantity: 100, food_trucks: [@food_truck1, @food_truck3]},
+      @item2 => {quantity: 7, food_trucks: [@food_truck1]},
+      @item3 => {quantity: 25, food_trucks: [@food_truck2]},
+      @item4 => {quantity: 50, food_trucks: [@food_truck2]}
+    }
+    expect(@event.total_inventory).to eq(expected_inventory)
   end
 end
 
