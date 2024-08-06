@@ -82,4 +82,17 @@ RSpec.describe Event do
             ])
         end
     end
+
+    describe "total_inventory" do
+        it "returns an array with nested array containing food_Trucks and quantity" do
+            @event.add_food_truck(@food_truck1)
+            @event.add_food_truck(@food_truck2)
+            @event.add_food_truck(@food_truck3)
+
+            expect(@event.total_inventory).to eq ({
+
+            
+            })
+        end
+    end
 end

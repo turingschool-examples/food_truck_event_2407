@@ -62,4 +62,6 @@ RSpec.describe FoodTruck do
             expect(@food_truck.list_items).to eq([@item1.name, @item2.name])
         end
     end
+
+
 end

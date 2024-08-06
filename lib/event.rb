@@ -23,4 +23,15 @@ class Event
       all_items = @food_trucks.map { |food_truck| food_truck.list_items}
       sorted_items = all_items.flatten.uniq.sort
     end
+
+    def total_inventory
+        total_inventory = Hash.new { |hash, key| hash[key] = { quantity: 0, food_trucks = []} }
+
+        @food_trucks.inventory.each do |food_truck|
+            food_truck.each do
+                total_inventory[]
+            end
+        end
+
+    end
 end
